@@ -15,7 +15,7 @@ void setup()
   RTC.begin();
   
   typcykl = 1 ;    ////// 1 dla 18/6  ////////  2 dla 12/12  ///////  3 dla wlaczone  ///////  4 dla wylaczony  ///////
-  onlight = 18;    // o ktorej godzinie ma sie wlanczyc swiatlo 0-23
+  onlight = 11;    // o ktorej godzinie ma sie wlanczyc swiatlo 0-23
   
 //  RTC.setHourMode(CLOCK_H12);
   RTC.setHourMode(CLOCK_H24);  // zegar 24h
@@ -37,17 +37,40 @@ void loop()
   
     ///           wyswietla uzyskane wyniki 
   
-  Serial.print("  typ cyklu ");
-  Serial.print(typcykl);
-  Serial.print("             od ");
+  Serial.print("    cykl   ");
+       if (typcykl==1)
+       {
+        Serial.print(" 18 / 6 ");
+       }
+        else if (typcykl==2)
+       {
+        Serial.print(" 12 / 12 ");
+       }
+         else if (typcykl==3)
+       {
+        Serial.print("wlonczone");
+       }
+        else 
+       {
+        Serial.print("wylaczone");
+       }
+  Serial.print("                od ");
   Serial.print(onlight);
   Serial.print("  do  ");
   Serial.println(offlight);
   Serial.print("  swiatlo  ");
-  Serial.print(swiatla);
+      if (swiatla==1) 
+        {
+        Serial.print("wlanczone");  
+        }
+      else {
+        Serial.print("wylanczone");
+      }
   Serial.print("             dlugosc dnia  ");
-  Serial.println(ontime);
+  Serial.print(ontime);
+  Serial.println(" h");
   Serial.println("---------------------------------------------------------"); 
+  Serial.print("                 godzina        "); 
   Serial.print(RTC.getHours());
   Serial.print(":");
   Serial.println(RTC.getMinutes());
